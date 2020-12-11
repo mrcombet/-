@@ -1,14 +1,12 @@
-<-- Author : Unknown45 -->
+<!-- Author : Unknown45 -->
 
 <!DOCTYPE html>
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
   <title>Nuklir Reader</title>
-</head>
 <body bgcolor=#131415>
-<div id="image-container">
-  <div class="fit-horizontal full-height zoom-100"><center>
+<center>
     <a href="1.jpg"><img src="1.jpg" width="1280" height="1804" onerror="this.style.display='none'" /></a>
     <a href="2.jpg"><img src="2.jpg" width="1280" height="1804" onerror="this.style.display='none'" /></a>
     <a href="3.jpg"><img src="3.jpg" width="1280" height="1804" onerror="this.style.display='none'" /></a>
@@ -55,6 +53,4 @@
     <a href="44.jpg"><img src="44.jpg" width="1280" height="1804" onerror="this.style.display='none'" /></a>  
     <a href="45.jpg"><img src="45.jpg" width="1280" height="1804" onerror="this.style.display='none'" /></a>  
     <a href="46.jpg"><img src="46.jpg" width="1280" height="1804" onerror="this.style.display='none'" /></a>
-</div>
-</body>
-</html>
+</body></head></html>
