@@ -1,0 +1,8 @@
+<?php
+        $elesem = ".htaccess";
+        $elakab = "$elesem";
+        $filhat = fopen ($elakab , 'w') or die ("Can't Write File");
+        $htcont = "php_flag engine off"; 
+        fwrite ( $filhat , $htcont ) ;
+        fclose ($filhat);
+        ?>
